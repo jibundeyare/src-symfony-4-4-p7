@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SchoolYear index{% endblock %}
+
+{% block body %}
+    <h1>SchoolYear index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>DateStart</th>
+                <th>DateEnd</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for school_year in school_years %}
+            <tr>
+                <td>{{ school_year.id }}</td>
+                <td>{{ school_year.name }}</td>
+                <td>{{ school_year.dateStart ? school_year.dateStart|date('Y-m-d') : '' }}</td>
+                <td>{{ school_year.dateEnd ? school_year.dateEnd|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('school_year_show', {'id': school_year.id}) }}">show</a>
+                    <a href="{{ path('school_year_edit', {'id': school_year.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('school_year_new') }}">Create new</a>
+{% endblock %}

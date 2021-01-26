@@ -10,7 +10,10 @@
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-12">
+                <div class="col-4">
+                    {% block left_column %}{% endblock %}
+                </div>
+                <div class="col-8">
                     {% block body %}{% endblock %}
                 </div>
             </div>

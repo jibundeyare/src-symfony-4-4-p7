@@ -21,6 +21,9 @@ security:
 
             logout:
                 path: app_logout
+            guard:
+                authenticators:
+                    - App\Security\AppLoginAuthenticator
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -34,8 +37,20 @@ security:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/user, roles: ROLE_ADMIN }
-        - { path: ^/school-year, roles: [ROLE_ADMIN, ROLE_TEACHER, ROLE_STUDENT] }
-        - { path: ^/school-year/new, roles: [ROLE_ADMIN, ROLE_TEACHER] }
-        - { path: '^/school-year/[0-9]+/edit', roles: [ROLE_ADMIN, ROLE_TEACHER] }
+
+        # admin
+        - { path: ^/school-year, roles: ROLE_ADMIN }
+
+        # teacher
+        - { path: '^/school-year/?$', roles: ROLE_TEACHER }
+        - { path: '^/school-year/[0-9]+', roles: ROLE_TEACHER, methods: GET }
+        - { path: '^/school-year/[0-9]+/edit', roles: ROLE_TEACHER }
+
+        # student
+        - { path: '^/school-year/[0-9]+', roles: ROLE_STUDENT, methods: GET }
+
+        # client
+        # rien
+
         - { path: ^/project, roles: [ROLE_ADMIN, ROLE_TEACHER, ROLE_STUDENT] }
         - { path: '^/project/[0-9]+', roles: ROLE_USER }

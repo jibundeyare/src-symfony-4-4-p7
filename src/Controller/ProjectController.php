@@ -22,6 +22,7 @@ class ProjectController extends AbstractController
      */
     public function index(ProjectRepository $projectRepository): Response
     {
+        // filtrage des utilisateurs non autorisés
         // une négation de « ou »
         // if (!(
         //         $this->isGranted('ROLE_ADMIN')
@@ -32,6 +33,7 @@ class ProjectController extends AbstractController
         //     throw new AccessDeniedException();
         // }
 
+        // filtrage des utilisateurs non autorisés
         // des négations de « et »
         if (!$this->isGranted('ROLE_ADMIN')
             && !$this->isGranted('ROLE_TEACHER')
@@ -41,6 +43,7 @@ class ProjectController extends AbstractController
             throw new AccessDeniedException();
         }
 
+        // affichage des projets possédés par l'utilisateur
         if ($this->isGranted('ROLE_STUDENT')
             || $this->isGranted('ROLE_CLIENT')
         ) {
@@ -61,6 +64,7 @@ class ProjectController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        // filtrage des utilisateurs non autorisés
         // une négation de « ou »
         // if (!(
         //         $this->isGranted('ROLE_ADMIN')
@@ -69,6 +73,7 @@ class ProjectController extends AbstractController
         //     throw new AccessDeniedException();
         // }
 
+        // filtrage des utilisateurs non autorisés
         // des négations de « et »
         if (!$this->isGranted('ROLE_ADMIN')
             && !$this->isGranted('ROLE_TEACHER')
@@ -99,6 +104,7 @@ class ProjectController extends AbstractController
      */
     public function show(Project $project): Response
     {
+        // filtrage des utilisateurs non autorisés
         // une négation de « ou »
         // if (!(
         //         $this->isGranted('ROLE_ADMIN')
@@ -109,6 +115,7 @@ class ProjectController extends AbstractController
         //     throw new AccessDeniedException();
         // }
 
+        // filtrage des utilisateurs non autorisés
         // des négations de « et »
         if (!$this->isGranted('ROLE_ADMIN')
             && !$this->isGranted('ROLE_TEACHER')
@@ -118,6 +125,7 @@ class ProjectController extends AbstractController
             throw new AccessDeniedException();
         }
 
+        // affichage des projets possédés par l'utilisateur
         if ($this->isGranted('ROLE_STUDENT')
             || $this->isGranted('ROLE_CLIENT')
         ) {
@@ -138,6 +146,7 @@ class ProjectController extends AbstractController
      */
     public function edit(Request $request, Project $project): Response
     {
+        // filtrage des utilisateurs non autorisés
         // une négation de « ou »
         // if (!(
         //         $this->isGranted('ROLE_ADMIN')
@@ -146,6 +155,7 @@ class ProjectController extends AbstractController
         //     throw new AccessDeniedException();
         // }
 
+        // filtrage des utilisateurs non autorisés
         // des négations de « et »
         if (!$this->isGranted('ROLE_ADMIN')
             && !$this->isGranted('ROLE_TEACHER')
@@ -173,6 +183,7 @@ class ProjectController extends AbstractController
      */
     public function editForStudent(Request $request, Project $project): Response
     {
+        // filtrage des utilisateurs non autorisés
         // une négation de « ou »
         // if (!(
         //         $this->isGranted('ROLE_ADMIN')
@@ -182,6 +193,7 @@ class ProjectController extends AbstractController
         //     throw new AccessDeniedException();
         // }
 
+        // filtrage des utilisateurs non autorisés
         // des négations de « et »
         if (!$this->isGranted('ROLE_ADMIN')
             && !$this->isGranted('ROLE_TEACHER')
@@ -190,6 +202,7 @@ class ProjectController extends AbstractController
             throw new AccessDeniedException();
         }
 
+        // affichage des projets possédés par l'utilisateur
         if ($this->isGranted('ROLE_STUDENT')) {
             $projects = $this->getUser()->getProjects();
 
@@ -218,6 +231,7 @@ class ProjectController extends AbstractController
      */
     public function delete(Request $request, Project $project): Response
     {
+        // filtrage des utilisateurs non autorisés
         // une négation de « ou »
         // if (!(
         //         $this->isGranted('ROLE_ADMIN')
@@ -226,6 +240,7 @@ class ProjectController extends AbstractController
         //     throw new AccessDeniedException();
         // }
 
+        // filtrage des utilisateurs non autorisés
         // des négations de « et »
         if (!$this->isGranted('ROLE_ADMIN')
             && !$this->isGranted('ROLE_TEACHER')

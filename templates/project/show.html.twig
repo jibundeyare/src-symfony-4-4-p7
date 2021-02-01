@@ -24,7 +24,13 @@
 
     <a href="{{ path('project_index') }}">back to list</a>
 
-    <a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_TEACHER') %}
+        <a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
+    {% elseif is_granted('ROLE_STUDENT') %}
+        <a href="{{ path('project_edit_for_student', {'id': project.id}) }}">edit</a>
+    {% endif %}
 
-    {{ include('project/_delete_form.html.twig') }}
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_TEACHER') %}
+        {{ include('project/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}

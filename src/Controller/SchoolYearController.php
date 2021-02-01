@@ -53,6 +53,8 @@ class SchoolYearController extends AbstractController
      */
     public function show(SchoolYear $schoolYear): Response
     {
+        // @todo générer une exception si un student demande une school year qui n'est pas la sienne
+
         return $this->render('school_year/show.html.twig', [
             'school_year' => $schoolYear,
         ]);

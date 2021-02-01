@@ -38,19 +38,19 @@ security:
         - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/user, roles: ROLE_ADMIN }
 
-        # admin
-        - { path: ^/school-year, roles: ROLE_ADMIN }
+        # school_year_index
+        - { path: ^/school-year/?$, roles: [ROLE_ADMIN, ROLE_TEACHER] }
+        # school_year_new
+        - { path: ^/school-year/new$, roles: ROLE_ADMIN }
+        # school_year_show
+        - { path: '^/school-year/[0-9]+$', methods: GET, roles: [ROLE_ADMIN, ROLE_TEACHER, ROLE_STUDENT] }
+        # school_year_edit
+        - { path: '^/school-year/[0-9]+/edit$', roles: [ROLE_ADMIN, ROLE_TEACHER] }
+        # school_year_delete
+        - { path: '^/school-year/[0-9]+$', methods: DELETE, roles: ROLE_ADMIN }
 
-        # teacher
-        - { path: '^/school-year/?$', roles: ROLE_TEACHER }
-        - { path: '^/school-year/[0-9]+', roles: ROLE_TEACHER, methods: GET }
-        - { path: '^/school-year/[0-9]+/edit', roles: ROLE_TEACHER }
-
-        # student
-        - { path: '^/school-year/[0-9]+', roles: ROLE_STUDENT, methods: GET }
-
-        # client
-        # rien
-
-        - { path: ^/project, roles: [ROLE_ADMIN, ROLE_TEACHER, ROLE_STUDENT] }
-        - { path: '^/project/[0-9]+', roles: ROLE_USER }
+        # projets
+        # admin : tout
+        # teacher : tout
+        # student : lister ses projets, modifier (sans changer les relations), voir le détail de leurs projets
+        # client :  lister ses projets, voir le détail de leurs projets

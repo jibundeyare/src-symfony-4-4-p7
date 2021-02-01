@@ -22,7 +22,11 @@
                 <td>{{ project.description }}</td>
                 <td>
                     <a href="{{ path('project_show', {'id': project.id}) }}">show</a>
-                    <a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
+                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_TEACHER') %}
+                        <a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
+                    {% elseif is_granted('ROLE_STUDENT') %}
+                        <a href="{{ path('project_edit_for_student', {'id': project.id}) }}">edit</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -33,5 +37,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('project_new') }}">Create new</a>
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_TEACHER') %}
+        <a href="{{ path('project_new') }}">Create new</a>
+    {% endif %}
 {% endblock %}
